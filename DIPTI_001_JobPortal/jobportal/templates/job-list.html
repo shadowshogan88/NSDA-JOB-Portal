@@ -1,0 +1,52 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+    <h1>Job List</h1>
+    
+    {% if request.user.user_type == 'Recruiters' %}
+    <a href="{% url 'post_job' %}">Post Job</a>
+        
+    {% endif %}
+        
+    
+    {% for data in job_data %}
+    <div class="card">
+ 
+        <div class="detail-row">
+            <div class="detail-label">Job Title</div>
+            <div class="detail-value">:{{data.title}}</div>
+        </div>
+         <div class="detail-row">
+            <div class="detail-label">Company Name</div>
+            <div class="detail-value">:{{data.posted_by.company_name}}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Salary</div>
+            <div class="detail-value">:{{data.salary}}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Skills</div>
+            <div class="detail-value">:{{data.skill_set}}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Deadline</div>
+            <div class="detail-value">:{{data.deadline}}</div>
+        </div>
+  
+    
+    {% if request.user.user_type == 'Recruiters' %}
+    <a href="{% url 'edit_job' data.id %}" class="btn btn-primary">Edit</a>
+    <a href="{% url 'delete_job' data.id %}" class="btn btn-red">Delete</a>
+    {% else %}
+    <a href="{% url 'apply_job' data.id %}" class="btn btn-green">Apply</a>
+        
+    {% endif %}
+        
+    
+
+    </div>
+        
+    {% endfor %}
+        
+{% endblock content %}
+    
