@@ -1,0 +1,12 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+    <h1>{{title}} {% if job_data %}{{job_data.title}}{% endif %}</h1>
+    <form action="" method='POST' enctype="multipart/form-data">
+        {% csrf_token %}
+        {{info_form_data.as_p}}
+
+    <button class="btn btn-primary">Submit</button>
+    </form>
+{% endblock content %}
+    
