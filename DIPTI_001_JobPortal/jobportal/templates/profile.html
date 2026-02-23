@@ -1,0 +1,42 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+    <h1>Hello, {{request.user.username}}</h1>
+    <div class="card">
+        <h2>Profile Information</h2>
+
+       
+       {% if request.user.user_type == 'Recruiters' %}
+        <div class="detail-row">
+            <div class="detail-value">
+                
+                {% if request.user.recuriter_profile.image %}
+                    <img src="{{request.user.recuriter_profile.image.url}}" width="100px" alt="">
+                {% else %}
+                No Preview
+                    
+                {% endif %}
+                    
+            </div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">Company Name</div>
+            <div class="detail-value">{{request.user.recuriter_profile.company_name}}</div>
+        </div>
+        {% else %}
+
+        <div class="detail-row">
+            <div class="detail-label">Display Name</div>
+            <div class="detail-value">{{request.user.display_name}}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Skills</div>
+            <div class="detail-value">{{request.user.seeker_profile.skill_set}}</div>
+        </div>
+       {% endif %}
+    <a href="{% url 'profile_update' %}" class="btn btn-primary">Update Profile</a>
+
+    </div>
+{% endblock content %}
+    
