@@ -1,0 +1,32 @@
+{% extends 'master/base.html' %}
+
+{% block content %}
+    <h1>Job List</h1>
+
+    {% for data in applied_job %}
+    <div class="card">
+ 
+        <div class="detail-row">
+            <div class="detail-label">Job Title</div>
+            <div class="detail-value">:{{data.job.title}}</div>
+        </div>
+         <div class="detail-row">
+            <div class="detail-label">Company Name</div>
+            <div class="detail-value">:{{data.job.posted_by.company_name}}</div>
+        </div>
+        <div class="detail-row">
+            <div class="detail-label">Salary</div>
+            <div class="detail-value">:{{data.job.salary}}</div>
+        </div>
+
+        <div class="detail-row">
+            <div class="detail-label">Deadline</div>
+            <div class="detail-value">:{{data.deadline}}</div>
+        </div>
+
+    </div>
+        
+    {% endfor %}
+        
+{% endblock content %}
+    
